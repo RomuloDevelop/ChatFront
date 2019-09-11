@@ -1,0 +1,44 @@
+$receivedColor: #ececec;
+$sendColor: #e1ffc7;
+
+.message {
+    position: relative;
+    color: #000;
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+    box-shadow: 1px 1px 4px grey;
+    &:after{
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+  }
+  .message.sent {
+    background: $sendColor;
+    border-radius: 5px 0px 5px 5px;
+    float: right;
+    &:after{
+      border-width: 0px 0px 10px 10px;
+      border-color: transparent transparent transparent $sendColor;
+      top: 0;
+      right: -10px;
+    }
+  }
+  .message.received {
+    background: $receivedColor;
+    border-radius: 0px 5px 5px 5px;
+    float: left;
+    &:after{
+      border-width: 10px 0px 0px 10px;
+      border-color: $receivedColor transparent transparent transparent;
+      top: 0;
+      left: -10px;
+    }
+  }

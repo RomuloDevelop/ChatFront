@@ -1,24 +1,30 @@
+import './App.scss';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './containers/Navbar';
+import MessageBox from './containers/MessageBox';
+import MessagesListBox from './containers/MessagesListBox';
+import ChatListBox from './containers/ChatListBox';
+// import socketIOClient from "socket.io-client";
 
-const App: React.FC = () => {
+document.body.style.backgroundColor = "rgba(184, 178, 106, 0.452)";
+
+const App: React.FC<{socket:SocketIOClient.Socket}> = (props) => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <div className="row m-0 w-100 h-100">
+      <div className="col-4 bg-light p-0 position-relative overflowBox">
+        <div className="position-absolute w-100 h-100">
+          <ChatListBox/>
+        </div>
+      </div>
+      <div className = "col-8 position-relative p-0 overflowBox" id="messageContainer">
+        <div className="position-absolute w-100 h-100" id="messageContainerWrapper">
+          <MessagesListBox/>
+          <MessageBox socket={props.socket}/>
+        </div>
+      </div>
+      </div>
     </div>
   );
 }
